@@ -1,0 +1,30 @@
+.cm-header-logo {
+  width: 200px;
+}
+
+.cm-header-op {
+  width: calc(100% - 200px);
+}
+
+.cm-primary-menu ul > li > a,
+.cm-sec-menu ul > li {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px 15px;
+}
+
+.cm-sec-menu ul > li span {
+  padding-left: 10px;
+}
+
+.cm-sec-menu ul > li img {
+  width: 22px;
+}
+
+.cm-header-phone > i {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 10px;
+  font-size: 14px;
+}
