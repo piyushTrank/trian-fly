@@ -23,13 +23,13 @@ const FlightResult = () => {
     isLoading: true,
   });
 
-  React.useEffect(() => {
-    setFlData({
-      ...flData,
-      data: flightData,
-      isLoading: false,
-    });
-  }, [flightData]);
+  // React.useEffect(() => {
+  //   setFlData({
+  //     ...flData,
+  //     data: flightData,
+  //     isLoading: false,
+  //   });
+  // }, [flightData]);
 
   const fetchFlights = async (dataToSend) => {
     try {
@@ -91,7 +91,7 @@ const FlightResult = () => {
   //   console.log("fldata", flData);
 
   React.useEffect(() => {
-    // !!flDataToSend && fetchFlights(flDataToSend);
+    !!flDataToSend && fetchFlights(flDataToSend);
   }, [flDataToSend]);
 
   const generateTrav = (adults, child) => {
