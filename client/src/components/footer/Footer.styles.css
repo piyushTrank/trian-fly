@@ -53,3 +53,39 @@
 .cm-footer-bottom p a {
   padding: 0 15px;
 }
+
+.cm-fixed-footer-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  background-color: #eee;
+  z-index: 99;
+}
+
+.cm-fixed-footer-cta a {
+  font-size: 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 5px 10px;
+}
+
+.cm-fixed-footer-cta a i {
+  padding-right: 5px;
+}
+
+@media screen and (max-width: 767px) {
+  .cm-footer-top .cm-footer-col {
+    width: 100%;
+  }
+
+  .cm-footer-top .cm-page-center {
+    flex-wrap: wrap;
+  }
+
+  .cm-footer-top .cm-footer-col + .cm-footer-col {
+    margin-top: 25px;
+  }
+}

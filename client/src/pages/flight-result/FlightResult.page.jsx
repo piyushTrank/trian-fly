@@ -88,7 +88,9 @@ const FlightResult = () => {
     return airportNames;
   };
 
-  //   console.log("fldata", flData);
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   React.useEffect(() => {
     !!flDataToSend && fetchFlights(flDataToSend);
@@ -142,8 +144,7 @@ const FlightResult = () => {
 
     for (let key in dataToSend) {
       if (dataToSend[key] === null) {
-        alert();
-        //navigate("/", { replace: true });
+        navigate("/", { replace: true });
       }
     }
 

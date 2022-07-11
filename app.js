@@ -28,14 +28,11 @@ const app = express();
 app.options(
   "*",
   cors({
-    // origin: 'http://127.0.0.1:3000',
     origin:
       process.env.NODE_ENV === "development"
         ? process.env.APP_URL_FRONT
         : process.env.APP_URL,
-    //preflightContinue: true,
     credentials: true,
-    //exposedHeaders: ['Set-Cookie'],
   })
 );
 
@@ -45,11 +42,15 @@ app.options(
 app.use(function (req, res, next) {
   //console.log('Req Heraders', req.headers);
   // Website you wish to allow to connect
+
+  console.log("Testing", req.get("origin"));
+
   if (process.env.NODE_ENV === "development") {
-    // res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:3000");
     res.setHeader("Access-Control-Allow-Origin", process.env.APP_URL);
+    // res.setHeader("Access-Control-Allow-Origin", req.get("origin"));
   } else {
-    res.setHeader("Access-Control-Allow-Origin", process.env.APP_URL);
+    // res.setHeader("Access-Control-Allow-Origin", process.env.APP_URL);
+    // res.setHeader("Access-Control-Allow-Origin", req.get("origin"));
   }
 
   // Request methods you wish to allow
@@ -92,7 +93,7 @@ app.use("/api/v1/flight", flightRouter);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 
-  app.get("*", function (req, res) {
+  app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
 }

@@ -31,13 +31,13 @@ const classTypes = [
   },
 ];
 
-const FlightSearchForm = () => {
+const BannerSearchForm = ({ depVal }) => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [formVal, setFormVal] = React.useState({
     tripType: "round-trip",
-    departureVal: null,
+    departureVal: depVal,
     arrVal: null,
     startDate: new Date(),
     endDate: "",
@@ -47,6 +47,16 @@ const FlightSearchForm = () => {
       child: 0,
     },
   });
+
+  React.useEffect(() => {
+    if (depVal !== null) {
+      console.log("depVal", depVal);
+      setFormVal({
+        ...formVal,
+        departureVal: depVal,
+      });
+    }
+  }, [depVal]);
 
   const handleSelectedVal = (selVal, fieldName) => {
     setFormVal({
@@ -253,4 +263,4 @@ const FlightSearchForm = () => {
   );
 };
 
-export default FlightSearchForm;
+export default BannerSearchForm;

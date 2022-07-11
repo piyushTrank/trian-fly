@@ -18,6 +18,8 @@ const BookTicketsPage = () => {
 
   React.useEffect(() => {
     if (data !== null) fetchOfferPricing();
+
+    window.scrollTo(0, 0);
   }, []);
 
   console.log("data", data);

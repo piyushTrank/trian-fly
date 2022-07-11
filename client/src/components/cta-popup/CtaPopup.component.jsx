@@ -23,7 +23,7 @@ const CtaPopup = ({ dataToSend }) => {
           className="cm-close cm-flex-type-2 cm-sec-bg2 cm-white-col cm-pointer"
           onClick={() => setCtaPopStatus(false)}
         >
-          <i class="fa-solid fa-xmark"></i>
+          <i className="fa-solid fa-xmark"></i>
         </div>
         <h1 className="">Looking for the best deals on </h1>
         <h2>
@@ -33,7 +33,6 @@ const CtaPopup = ({ dataToSend }) => {
         <img src={calling} alt="executive" />
         <div className="cm-content">
           <p>Call now and save upto 20%</p>
-
           <h3>
             <a className="cm-sec-col2" href={`tel:${phoneNum.value}`}>
               {phoneNum.label}

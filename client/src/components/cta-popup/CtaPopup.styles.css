@@ -67,3 +67,31 @@
 .cm-cta-pop-wrapper h2 + img {
   width: 80px;
 }
+
+/* responsive */
+@media screen and (max-width: 1023px) {
+  .cm-cta-popup-container h1 {
+    font-size: 25px;
+  }
+
+  .cm-cta-popup-container h2 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .cm-cta-popup-container .cm-cta-pop-wrapper {
+    padding: 30px 15px;
+    width: calc(100% - 30px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cm-cta-popup-container h1 {
+    font-size: 20px;
+  }
+
+  .cm-cta-popup-container .cm-cta-pop-wrapper .cm-content h3 {
+    font-size: 24px;
+  }
+}

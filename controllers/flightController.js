@@ -1,8 +1,16 @@
 const Amadeus = require("amadeus");
+const nodemailer = require("nodemailer");
+const {
+  exchangeMail,
+  cancelRefundMail,
+  newBookingMail,
+  futureCreditMail,
+} = require("../utils/mailTemplates");
 
 const amadeus = new Amadeus({
   clientId: process.env.API_KEY,
   clientSecret: process.env.API_SECRET,
+  hostname: "production",
 });
 
 exports.flightTesting = async (req, res) => {
@@ -18,17 +26,23 @@ exports.flightTesting = async (req, res) => {
 };
 
 exports.searchAirport = async (req, res) => {
-  const searchTerm = req.body.searchTerm;
+  try {
+    const searchTerm = req.body.searchTerm;
 
-  const searchData = await amadeus.referenceData.locations.get({
-    keyword: searchTerm,
-    subType: "CITY,AIRPORT",
-  });
+    console.log("searchTerm", searchTerm);
 
-  res.status(200).json({
-    status: "success",
-    data: searchData.data,
-  });
+    const searchData = await amadeus.referenceData.locations.get({
+      keyword: searchTerm,
+      subType: "CITY,AIRPORT",
+    });
+
+    res.status(200).json({
+      status: "success",
+      data: searchData.data,
+    });
+  } catch (error) {
+    console.log("error", error);
+  }
 };
 
 exports.flightOffers = async (req, res) => {
@@ -141,6 +155,112 @@ exports.flightOffersPricing = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: offerDataPricing.result,
+    });
+  } catch (error) {
+    console.log("err", error);
+  }
+};
+
+exports.sendMail = async (req, res) => {
+  try {
+    console.log(req.body);
+
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      secureConnection: false,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    let mailTempFn = "Invalid Data";
+
+    if (req.body.bookingType === "exchange") {
+      mailTempFn = exchangeMail(req.body.data);
+    }
+
+    if (req.body.bookingType === "cancelRefund") {
+      mailTempFn = cancelRefundMail(req.body.data);
+    }
+
+    if (req.body.bookingType === "newBooking") {
+      mailTempFn = newBookingMail(req.body.data);
+    }
+
+    if (req.body.bookingType === "futureCredit") {
+      mailTempFn = futureCreditMail(req.body.data);
+    }
+
+    if (req.body.receiverEmail === "" || req.body.emailSubject === "") {
+      res.status(200).json({
+        status: "error",
+        message: "Receiver Email & Email Subject cannot be empty.",
+      });
+    }
+
+    let mailOptions = {
+      from: "info@trianfly.com",
+      to: !!req.body.receiverEmail
+        ? req.body.receiverEmail
+        : "piyush@tranktechies.com",
+      subject: req.body.emailSubject,
+      html: mailTempFn,
+    };
+
+    transporter.sendMail(mailOptions, function (err, info) {
+      if (err) {
+        console.log("Email err", err);
+        res.status(200).json({
+          status: "success",
+          message: "Mail not Sent.",
+        });
+      } else {
+        res.status(200).json({
+          status: "success",
+          message: "Mail Sent.",
+        });
+      }
+    });
+  } catch (error) {
+    console.log("err", error);
+  }
+};
+
+exports.sendTestMail = async (req, res) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      // host: process.env.SMTP_HOST,
+      host: "us2.smtp.mailhostbox.com",
+      port: process.env.SMTP_PORT,
+      secureConnection: false,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    let mailOptions = {
+      from: "info@trianfly.com",
+      to: "piyush@tranktechies.com",
+      subject: "Testing subject",
+      html: `<h1>Hey There!!</h1>`,
+    };
+
+    transporter.sendMail(mailOptions, function (err, info) {
+      if (err) {
+        console.log("Email err", err);
+        res.status(200).json({
+          status: "error",
+          message: "Mail not Sent.",
+        });
+      } else {
+        res.status(200).json({
+          status: "success",
+          message: "Mail Sent.",
+        });
+      }
     });
   } catch (error) {
     console.log("err", error);

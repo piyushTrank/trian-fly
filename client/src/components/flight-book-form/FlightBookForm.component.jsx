@@ -1,9 +1,12 @@
 import React from "react";
 import DateSelector from "../date-selector/DateSelector.component";
 import NationalitySelect from "./NationalitySelect.component";
+import { useDispatch } from "react-redux";
+import { showToast } from "../../redux/notifications/notifications.action";
 
 const FlightBookForm = ({ travData, grandTotal }) => {
   // console.log("travData", travData);
+  const dispatch = useDispatch();
   const [formVal, setFormVal] = React.useState({
     phoneNumCode: "+1",
     phoneNum: "",
@@ -23,6 +26,62 @@ const FlightBookForm = ({ travData, grandTotal }) => {
     cardCvv: "",
     acceptTnc: false,
   });
+
+  const chkReqFields = (arr, dataKey) => {
+    let isValid = true;
+    arr.forEach((el) => {
+      console.log(el, formVal[el]);
+      if (formVal[el] === "") isValid = false;
+    });
+
+    return isValid;
+  };
+
+  const chkTravDet = () => {
+    let isPassValid = true;
+    const chkFields = ["firstName", "lastName", "gender", "dob"];
+
+    for (let key in passInfo) {
+      chkFields.forEach((el) => {
+        if (passInfo[key][el] === "") isPassValid = false;
+      });
+    }
+
+    return isPassValid;
+  };
+
+  const flightBookSubmit = () => {
+    const chkArr = [
+      "phoneNum",
+      "email",
+      "address1",
+      "country",
+      "state",
+      "city",
+      "zipCode",
+      "cardNum",
+      "cardHolderName",
+      "cardExpMonth",
+      "cardExpYr",
+      "cardCvv",
+    ];
+
+    console.log(
+      'chkReqFields(chkArr, "formVal")',
+      chkReqFields(chkArr, "formVal")
+    );
+
+    if (!chkReqFields(chkArr, "formVal") || !chkTravDet()) {
+      dispatch(
+        showToast({
+          msg: "Fields marked (*) are required.",
+          type: "error",
+        })
+      );
+
+      return;
+    }
+  };
 
   const loadTravDataFields = () => {
     let dataFields = {};
@@ -1028,7 +1087,7 @@ const FlightBookForm = ({ travData, grandTotal }) => {
               />
             </div>
             <div className="cm-form-field">
-              <label>Zip Code</label>
+              <label>Zip Code*</label>
               <input
                 type="text"
                 name="zipCode"
@@ -1076,7 +1135,10 @@ const FlightBookForm = ({ travData, grandTotal }) => {
       </div>
 
       <div className="cm-form-section-submit">
-        <button className="cm-btn cm-prim-bg cm-white-col cm-wd-100 cm-btn-lg">
+        <button
+          onClick={flightBookSubmit}
+          className="cm-btn cm-prim-bg cm-white-col cm-wd-100 cm-btn-lg"
+        >
           Confirm Booking
         </button>
       </div>

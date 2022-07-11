@@ -17,22 +17,34 @@ const Header = () => {
           </Link>
         </div>
         <div className="cm-header-op cm-flex-type-1">
-          <div className="cm-primary-menu">
+          {/* <div className="cm-primary-menu">
             <ul className="cm-menu-ul cm-flex">
               <li>
                 <Link to="/">Home</Link>
               </li>
               <li>
                 <Link to="/">Flights</Link>
-              </li>
+              </li> 
             </ul>
-          </div>
+          </div> */}
 
           <div className="cm-sec-menu">
             <ul className="cm-menu-ul cm-flex-type-1">
-              <li className="cm-flex-type-2">
+              {/* <li className="cm-flex-type-2">
                 <img src={direction} alt="Explore" />
                 <span>Explore</span>
+              </li> */}
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/packages">Packages</Link>
+              </li>
+              <li>
+                <Link to="/about-us">About Us</Link>
+              </li>
+              <li>
+                <Link to="/contact-us">Contact Us</Link>
               </li>
               <li className="cm-flex-type-2">
                 <img src={support} alt="Support" />

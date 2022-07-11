@@ -162,3 +162,95 @@
 .cm-booking-cta .cm-content {
   padding: 10px;
 }
+
+/* Responsive */
+
+@media screen and (max-width: 1023px) {
+  .cm-pass-info-wrap .cm-form-field-fourth .cm-form-field {
+    width: 50%;
+  }
+
+  .cm-pass-info-wrap .cm-form-field-fourth {
+    flex-wrap: wrap;
+  }
+
+  .cm-pass-contact-info .cm-form-field label,
+  .cm-phone-inp {
+    width: 100%;
+    padding: 0;
+  }
+
+  .cm-pass-contact-info .cm-form-field {
+    flex-wrap: wrap;
+  }
+
+  .cm-pass-contact-info .cm-form-field-grp {
+    padding: 0 15px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .cm-book-ticket-container > div > .cm-left-col {
+    width: 100%;
+  }
+
+  .cm-book-ticket-container > div > .cm-right-col {
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+  }
+
+  .cm-book-ticket-container .cm-page-center {
+    flex-wrap: wrap;
+    flex-flow: column-reverse;
+  }
+
+  .cm-booking-cta h4 {
+    font-size: 20px;
+  }
+
+  .cm-pass-info-wrap .cm-form-field-third {
+    flex-wrap: wrap;
+  }
+
+  .cm-pass-info-wrap .cm-form-field-third h3 {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .cm-pass-info-wrap .cm-form-field-third.cm-top .cm-form-field,
+  .cm-pass-info-wrap .cm-form-field-third .cm-form-field {
+    width: 100%;
+  }
+
+  .cm-fl-book-form {
+    padding-bottom: 0;
+  }
+
+  .cm-form-section .cm-form-head h3 {
+    font-size: 18px;
+  }
+
+  .cm-tnc-section h3 {
+    font-size: 20px;
+  }
+
+  .cm-fl-res-fares-tab table {
+    overflow: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cm-pass-info-wrap .cm-form-field-fourth .cm-form-field {
+    width: 100%;
+  }
+
+  .cm-book-ticket-container .cm-form-field-half > .cm-form-field {
+    width: 100%;
+    padding: 0;
+  }
+
+  .cm-book-ticket-container .cm-form-field-half {
+    flex-wrap: wrap;
+  }
+}

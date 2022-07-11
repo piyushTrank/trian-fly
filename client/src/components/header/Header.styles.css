@@ -4,6 +4,7 @@
 
 .cm-header-op {
   width: calc(100% - 200px);
+  justify-content: flex-end;
 }
 
 .cm-primary-menu ul > li > a,
@@ -27,4 +28,27 @@
   border-radius: 50%;
   margin-right: 10px;
   font-size: 14px;
+}
+
+.cm-header-phone a {
+  font-size: 20px;
+}
+
+@media screen and (max-width: 1023px) {
+  .cm-header-phone a {
+    font-size: 16px;
+  }
+
+  .cm-primary-menu ul > li > a,
+  .cm-sec-menu ul > li {
+    padding: 10px;
+  }
+
+  .cm-header-logo {
+    width: 150px;
+  }
+
+  .cm-header-op {
+    width: calc(100% - 150px);
+  }
 }

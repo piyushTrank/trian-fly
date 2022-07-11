@@ -19,7 +19,7 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   margin: 0;
-  padding: 0;
+  padding: 0 0 53px;
   color: var(--secCol);
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
@@ -523,5 +523,24 @@ h4 {
 @media screen and (max-width: 1023px) {
   .cm-page-center {
     width: 100%;
+  }
+
+  .cm-section-h {
+    font-size: 35px;
+  }
+
+  .cm-home-trav-container .cm-left-col,
+  .cm-home-trav-container .cm-right-col {
+    width: 100%;
+  }
+
+  .cm-home-trav-container .cm-page-center {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .cm-section-h {
+    font-size: 28px;
   }
 }

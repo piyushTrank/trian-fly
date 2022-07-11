@@ -9,6 +9,15 @@ import "./Footer.styles.css";
 const Footer = () => {
   return (
     <footer className="cm-footer-container">
+      <div className="cm-fixed-footer-cta cm-txt-center cm-white-bg box-shadow-2 cm-wt-600">
+        <p>
+          Save Instantly on Unpublished Deals - CALL NOW{" "}
+          <a href={`tel:${phoneNum.value}`} className="cm-prim-bg cm-white-col">
+            <i className="fa-solid fa-phone"></i>
+            {phoneNum.label}
+          </a>
+        </p>
+      </div>
       <div className="cm-footer-top">
         <div className="cm-page-center cm-flex-type-2 cm-flex-align-fs">
           <div className="cm-footer-col cm-wd-50 cm-lr-pad cm-footer-col1">
@@ -25,12 +34,15 @@ const Footer = () => {
           <div className="cm-footer-col cm-wd-25 cm-lr-pad cm-footer-col2">
             <h3>Explore Top Destinations</h3>
             <ul className="cm-menu-ul">
-              <li>Explore London</li>
-              <li>Explore Toronto</li>
-              <li>Explore Niagra Falls</li>
-              <li>Explore Statue of Liberty</li>
-              <li>Explore Big Ben</li>
-              <li>Explore New York</li>
+              <li>
+                <Link to="/packages">Explore London</Link>
+              </li>
+              <li>
+                <Link to="/packages">Explore New York</Link>
+              </li>
+              <li>
+                <Link to="/packages">Explore Atlanta</Link>
+              </li>
             </ul>
           </div>
           <div className="cm-footer-col cm-wd-25 cm-lr-pad cm-footer-col3">
@@ -62,8 +74,10 @@ const Footer = () => {
         <div className="cm-page-center cm-txt-center">
           <p>© 2022. All rights reserved.</p>
           <p className="cm-flex-type-2">
-            <Link to="/">Privacy Policy</Link> |
-            <Link to="/">Terms & Conditions</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link> |
+            <Link to="/terms-and-conditions">Terms & Conditions</Link> |
+            <Link to="/disclaimer">Disclaimer</Link> |
+            <Link to="/refund-policy">Refund Policy</Link>
           </p>
         </div>
       </div>

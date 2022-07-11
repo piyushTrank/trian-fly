@@ -18,7 +18,9 @@ const FlightResultItem = ({
 
   const getAirportNames = (iataCode) => {
     if (!!airportNames)
-      return `${airportNames[iataCode].code} | ${airportNames[iataCode].name}, ${airportNames[iataCode].country}`;
+      return !!airportNames[iataCode]
+        ? `${airportNames[iataCode].code} | ${airportNames[iataCode].name}, ${airportNames[iataCode].country}`
+        : iataCode;
   };
 
   const getAirlineName = (code) => allAirlineNames[code];
@@ -207,7 +209,7 @@ const FlightResultItem = ({
         </div>
         <div className="cm-col cm-col2">
           <h3>$ {flData.price.base}</h3>
-          <p>Base Fare</p>
+          <p>Total Base Fare</p>
         </div>
         <div className="cm-col cm-col3">
           <span
